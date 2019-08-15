@@ -219,7 +219,7 @@ function fixMultisigOrder (input, transaction, vin, value, network) {
       }
 
       // skip if signature does not match pubKey
-      if (!keyPair.verify(hash, parsed.signature)) return false
+      if (!keyPair.verify(hash, parsed.signature) && !network.hasOwnProperty('multisigSkipKPVerify')) return false
 
       // remove matched signature from unmatched
       unmatched[i] = undefined
